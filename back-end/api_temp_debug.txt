@@ -1,0 +1,8 @@
+"email": "a@mail.com",
+"password": "asdf"
+
+{
+    "email": "bbb@mail.com",
+    "user_name": "bbbb",
+    "password": "bbb12346ccc"
+}
