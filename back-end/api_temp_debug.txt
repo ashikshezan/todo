@@ -1,8 +1,23 @@
-"email": "a@mail.com",
-"password": "asdf"
+{
+    "email": "a@mail.com",
+    "password": "asdf"
+}
 
 {
     "email": "bbb@mail.com",
     "user_name": "bbbb",
     "password": "bbb12346ccc"
+}
+
+testUser
+z@mail.com
+asdfg12345
+
+
+
+
+{
+    "email": "ashik@mail.com",
+    "user_name": "ashik",
+    "password": "asdf12345"
 }

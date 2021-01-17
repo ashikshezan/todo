@@ -6,7 +6,7 @@ from .permissions import TodoUserWritePermission
 
 
 class TodoList(generics.ListCreateAPIView):
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [IsAdminUser]
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 

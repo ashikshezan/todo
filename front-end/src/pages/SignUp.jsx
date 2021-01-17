@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import axiosInstance from '../axios';
 import { useForm } from '../customHooks';
-import { useHistory } from 'react-router-dom'
 
 const initialValue = {
-    email: "ashik@mail.com",
-    password: "asdf12345"
+    username: 'testUser',
+    email: 'z@mail.com',
+    password: 'asdfg12345'
 }
 
+const SignUp = () => {
 
-const LogIn = () => {
-    const history = useHistory()
     // handeled by a custom hook
     const [values, handleChange] = useForm(initialValue)
 
@@ -19,28 +18,26 @@ const LogIn = () => {
         console.log(values);
 
         axiosInstance
-            .post('token/', {
+            .post(`users/register/`, {
                 email: values.email,
+                user_name: values.username,
                 password: values.password,
             })
             .then((res) => {
-                localStorage.setItem('access_token', res.data.access)
-                localStorage.setItem('refresh_token', res.data.refresh)
-                axiosInstance.defaults.headers['Authorization'] =
-                    'JWT ' + localStorage.getItem('access_token')
-
-                history.push('/')
-
-            }).then(console.log(localStorage))
-            .catch(er => console.log(er))
+                // history.push('/login');
+                console.log(res);
+                console.log(res.data);
+            })
+            .catch(err => console.log(err.data))
     }
-    useEffect(() => {
-        console.log('localStorage in LOGIN-> ', localStorage);
-    }, [localStorage])
+
+
     return (
         <div className={"grid place-items-center"}>
             <form action="" onSubmit={handleSubmit}>
 
+                <label htmlFor="username">Username</label>
+                <input type="text" name='username' value={values.username} onChange={handleChange} className={"shadow-md block"} />
 
                 <label htmlFor="email">Email</label>
                 <input type="text" name='email' value={values.email} onChange={handleChange} className={"shadow-md block"} />
@@ -48,15 +45,10 @@ const LogIn = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" name='password' value={values.password} onChange={handleChange} className={"shadow-md block"} />
 
-                <button className="bg-red-300 px-4 py-2" type="submit">LogIn</button>
+                <button className="bg-red-300 px-4 py-2" type="submit">Sign Up</button>
             </form>
         </div>
     );
 }
 
-export default LogIn;
-
-// {
-//     "email": "a@mail.com",
-//     "password": "asdf"
-// }
+export default SignUp;
